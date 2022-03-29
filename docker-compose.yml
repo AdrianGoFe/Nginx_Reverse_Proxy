@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: nginx_proxy
-    restart: unless-stopped
+    restart: always
     ports:
       - 80:80
       - 443:443
@@ -26,7 +26,7 @@ services:
   letsencrypt-proxy:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: letsencrypt-proxy
-    restart: unless-stopped
+    restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - letsencrypt-certs:/etc/nginx/certs
@@ -41,7 +41,7 @@ services:
   wordpress:
     container_name: wordpress
     image: wordpress:5.9.2
-    restart: unless-stopped
+    restart: always
     expose:
       - 443
     secrets:
@@ -66,7 +66,7 @@ services:
   mysql_db:
     container_name: mysql
     image: mysql:5.7.17
-    restart: unless-stopped
+    restart: always
     secrets:
       - db_user
       - db_password
