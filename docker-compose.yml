@@ -33,7 +33,7 @@ services:
       - letsencrypt-vhost-d:/etc/nginx/vhost.d
       - letsencrypt-html:/usr/share/nginx/html
     environment:
-       DEFAULT_EMAIL: serviciosysoftwareadrian@gmail.com
+       DEFAULT_EMAIL: YOUR_EMAIL
        NGINX_PROXY_CONTAINER: nginx_proxy
     networks:
       - web
@@ -53,9 +53,9 @@ services:
       WORDPRESS_DB_USER_FILE: /run/secrets/db_user
       WORDPRESS_DB_PASSWORD_FILE: /run/secrets/db_password
       WORDPRESS_DB_NAME_FILE: /run/secrets/db_name
-      VIRTUAL_HOST: ietigrupo2cloudhb.tk, www.ietigrupo2cloudhb.tk
-      LETSENCRYPT_HOST: ietigrupo2cloudhb.tk, www.ietigrupo2cloudhb.tk
-      LETSENCRIPT_EMAIL: serviciosysoftwareadrian@gmail.com
+      VIRTUAL_HOST: YOUR_DOMAIN, AND_SUBDOMAINS
+      LETSENCRYPT_HOST: YOUR_DOMAIN, AND_SUBDOMAINS
+      LETSENCRIPT_EMAIL: YOUR_MAIL
     volumes:
       - wordpress:/var/www/html
     depends_on:
@@ -84,13 +84,13 @@ services:
 
 secrets:
   db_user:
-    file: creds/db_user.txt
+    file: PATH_OF_YOUR_FILE_USER.TXT
   db_password:
-    file: creds/db_password.txt
+    file: PATH_OF_YOUR_PASSWORD_USER.TXT
   db_name: 
-    file: creds/db_name.txt
+    file: PATH_OF_YOUR_DB_NAME.TXT
   db_password_root:
-    file: creds/db_password_root.txt
+    file: PATH_OF_YOUR_PASSWORD_ROOT.TXT
 
 volumes:
   wordpress:
