@@ -17,8 +17,8 @@
 5. nano docker-compose.yml
 ~~~
 
-<p>Now we will change the **red parameters** with our information</p>
+Now we will change the **red parameters** with our information
 
 <p align="center">
-  <img width="460" height="300" src="https://drive.google.com/file/d/1UEUhusX5u6KhzsUnLtjOy0rakJOgPHuP/view?usp=drive_link">
+  <img width="460" height="300" src="https://drive.google.com/file/d/1UEUhusX5u6KhzsUnLtjOy0rakJOgPHuP/view?usp=sharing">
 </p>
