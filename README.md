@@ -1,7 +1,7 @@
 # Steps to run the Reverse Proxy
 
 <p align="center">
-  <img width="460" height="300" src="https://i0.wp.com/1000logos.net/wp-content/uploads/2021/11/Docker-Logo-2013.png?w=1230&ssl=1">
+  <img width="460" height="300" src="pic/icon_docker.webp">
 </p>
 
 
