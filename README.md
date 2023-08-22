@@ -8,7 +8,7 @@
 ~~~
 1. sudo -i
 
-2. mkdir [path_where_you_want_to_save]
+2. cd [path_where_you_want_to_save]
 
 3. git clone https://github.com/AdrianGoFe/Nginx_Reverse_Proxy.git
 
@@ -129,4 +129,23 @@ networks:
   web:
     external: true
 ~~~
+
+When we finish editing the necessary **parameters** we must save the file with the following key combinations:
+
+~~~
+1. Control + O
+
+2. Enter
+
+3. Control + X
+~~~
+
+Finally, we run the script *.sh* which will be responsible for operating all the necessary services:
+
+~~~
+1. chmod +x run.sh
+
+2. ./run.sh
+~~~
+
 
