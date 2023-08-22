@@ -19,7 +19,7 @@
 
 Now we will change the **red parameters** with our information
 
-`
+~~~
 version: '3.3'
 
 services:
@@ -128,5 +128,5 @@ volumes:
 networks:
   web:
     external: true
-`
+~~~
 
