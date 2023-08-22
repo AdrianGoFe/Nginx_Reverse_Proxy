@@ -19,6 +19,114 @@
 
 Now we will change the **red parameters** with our information
 
-<p align="center">
-  <img width="460" height="300" src="pic/changes_configuration_1.png">
-</p>
+`
+version: '3.3'
+
+services:
+
+  nginx_proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nginx_proxy
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - letsencrypt-certs:/etc/nginx/certs
+      - letsencrypt-vhost-d:/etc/nginx/vhost.d
+      - letsencrypt-html:/usr/share/nginx/html
+      - conf-nginx:/etc/nginx
+      - pers-app:/app
+      - pers-opt:/opt
+      - pers-usr-local:/usr/local
+    networks:
+      - web
+
+  letsencrypt-proxy:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: letsencrypt-proxy
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - letsencrypt-certs:/etc/nginx/certs
+      - letsencrypt-vhost-d:/etc/nginx/vhost.d
+      - letsencrypt-html:/usr/share/nginx/html
+    environment:
+       DEFAULT_EMAIL: YOUR_EMAIL
+       NGINX_PROXY_CONTAINER: nginx_proxy
+    networks:
+      - web
+
+  wordpress:
+    container_name: wordpress
+    image: wordpress:5.9.2
+    restart: always
+    expose:
+      - 443
+    secrets:
+      - db_user
+      - db_password
+      - db_name
+    environment:
+      WORDPRESS_DB_HOST: mysql_db
+      WORDPRESS_DB_USER_FILE: /run/secrets/db_user
+      WORDPRESS_DB_PASSWORD_FILE: /run/secrets/db_password
+      WORDPRESS_DB_NAME_FILE: /run/secrets/db_name
+      VIRTUAL_HOST: YOUR_DOMAIN, AND_SUBDOMAINS
+      LETSENCRYPT_HOST: YOUR_DOMAIN, AND_SUBDOMAINS
+      LETSENCRIPT_EMAIL: YOUR_MAIL
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      - mysql_db
+    networks:
+      - web
+      
+  mysql_db:
+    container_name: mysql
+    image: mysql:5.7.17
+    restart: always
+    secrets:
+      - db_user
+      - db_password
+      - db_name
+      - db_password_root
+    environment:
+      MYSQL_DATABASE_FILE: /run/secrets/db_name
+      MYSQL_USER_FILE: /run/secrets/db_user
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_password_root
+    volumes:
+      - mysql_db:/var/lib/mysql
+    networks:
+      - web
+
+secrets:
+  db_user:
+    file: PATH_OF_YOUR_FILE_USER.TXT
+  db_password:
+    file: PATH_OF_YOUR_PASSWORD_USER.TXT
+  db_name: 
+    file: PATH_OF_YOUR_DB_NAME.TXT
+  db_password_root:
+    file: PATH_OF_YOUR_PASSWORD_ROOT.TXT
+
+volumes:
+  wordpress:
+  mysql_db:
+  letsencrypt-certs:
+  letsencrypt-vhost-d:
+  letsencrypt-html:
+  conf-nginx:
+  pers-app:
+  pers-opt:
+  pers-usr-local:
+
+networks:
+  web:
+    external: true
+`
+
