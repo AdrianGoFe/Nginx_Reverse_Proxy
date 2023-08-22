@@ -55,7 +55,7 @@ services:
       - letsencrypt-vhost-d:/etc/nginx/vhost.d
       - letsencrypt-html:/usr/share/nginx/html
     environment:
-       DEFAULT_EMAIL: YOUR_EMAIL
+       DEFAULT_EMAIL: <span style="color:red">YOUR_EMAIL</span>
        NGINX_PROXY_CONTAINER: nginx_proxy
     networks:
       - web
