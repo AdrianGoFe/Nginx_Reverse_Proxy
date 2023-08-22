@@ -20,5 +20,5 @@
 Now we will change the **red parameters** with our information
 
 <p align="center">
-  <img width="460" height="300" src="https://drive.google.com/file/d/1UEUhusX5u6KhzsUnLtjOy0rakJOgPHuP/view?usp=sharing">
+  <img width="460" height="300" src="pic/changes_configuration_1.png">
 </p>
