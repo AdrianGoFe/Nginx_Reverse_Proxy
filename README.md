@@ -17,7 +17,7 @@
 5. nano docker-compose.yml
 ~~~
 
-Now we will change the **red parameters** with our information
+Now we must change the parameters called **YOUR_MAIL, YOUR_DOMAIN, AND_SUBDOMAINS** with our information:
 
 ~~~
 version: '3.3'
